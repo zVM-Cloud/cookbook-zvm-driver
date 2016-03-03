@@ -1,0 +1,83 @@
+<%= render "nova.conf.erb", cookbook: 'openstack-compute'%>
+##### z/VM #####
+[DEFAULT]
+# The xCAT MN IP address or host name.
+zvm_xcat_server=<%= node['ibm-openstack']['zvm-driver']['xcat']['server'] %>
+
+# The xCAT master node (the node name in xCAT definition).
+zvm_xcat_master=<%= node['ibm-openstack']['zvm-driver']['xcat']['master'] %>
+
+# The xCAT REST API username.
+zvm_xcat_username=<%= node['ibm-openstack']['zvm-driver']['xcat']['username'] %>
+
+# The xCAT REST API password.
+zvm_xcat_password=<%= @zvm_xcat_password %>
+
+# The disk pool name that xCAT will allocate disk from for new servers.
+# Note: The zvm_diskpool name is the name of the storage 'group' defined in the Directory Manager.
+zvm_diskpool=<%= node['ibm-openstack']['zvm-driver'][@host]['diskpool'] %>
+
+# The disk pool type (can be FBA or ECKD ).
+zvm_diskpool_type=<%= node['ibm-openstack']['zvm-driver'][@host]['diskpool_type'] %>
+
+# The xCAT node name of the z/VM hypervisor.
+zvm_host=<%= node['ibm-openstack']['zvm-driver'][@host]['zvm_host'] %>
+
+# The host is used to distinguish different nova compute host, it can be same with zvm_host.
+host=<%= node['ibm-openstack']['zvm-driver'][@host]['host'] %>
+
+# Default template of user directory for new servers.
+# User should not use lnxdflt but should define his own profile.
+zvm_user_profile=<%= node['ibm-openstack']['zvm-driver'][@host]['user_profile'] %>
+
+# The path that images will be stored (snapshot, deploy etc).
+zvm_image_tmp_path=<%= node['ibm-openstack']['zvm-driver']['image']['tmp_path'] %>
+
+# The config driver format, should be tgz.
+config_drive_format=<%= node['ibm-openstack']['zvm-driver']['config_drive']['format'] %>
+
+# Define whether to inject the password in config drive, if zvm_config_drive_inject_password
+# is set to be True, the default os root password for the new booted vm will be the random value of
+# adminPass property that is shown in the output of nova boot command.
+zvm_config_drive_inject_password=<%= node['ibm-openstack']['zvm-driver']['config_drive']['inject_password'] %>
+
+# The default root password for z/VM instance.
+zvm_image_default_password=<%= @zvm_image_default_password %>
+
+# Timeout value for spawn in seconds, if new spawn machine can't be reachable
+# after this value, deploy will report error 'Failed to power on instance'.
+zvm_reachable_timeout=<%= node['ibm-openstack']['zvm-driver']['reachable_timeout'] %>
+
+# Timeout value for reading xCAT response in seconds.
+zvm_xcat_connection_timeout=<%= node['ibm-openstack']['zvm-driver']['xcat']['connection_timeout'] %>
+
+# NOT z/VM specific, set it default 86400(s) = 24hours.
+image_cache_manager_interval=<%= node['ibm-openstack']['zvm-driver']['image']['cache_manager_interval'] %>
+
+# xCAT image that not used for a long time (default is 30 days) will be purged.
+xcat_image_clean_period=<%= node['ibm-openstack']['zvm-driver']['xcat']['image_clean_period'] %>
+
+# The threshold when xCAT MN disk space is not big enough(default is 50G), purge operation will start.
+xcat_free_space_threshold=<%= node['ibm-openstack']['zvm-driver']['xcat']['free_space_threshold'] %>
+
+# The name of xCAT SCSI pool. Users can specify any name as their wish. xCAT will
+# create and manage it.
+zvm_scsi_pool=<%= node['ibm-openstack']['zvm-driver'][@host]['scsi_pool'] %>
+
+# The list of FCPs used by instances. Each instance needs one FCP in order to attach a
+# volume to itself. Those FCPs should be well planned and made online before
+# OpenStack can use them. OpenStack will not check their status but use them directly.
+# So if they are not ready, errors may be returned. The format of this variable should look
+# like 'min1-max1;min2-max2;min3-max3'. Please contact your z/VM system manager
+# if you don't know what FCPs you can use.
+zvm_fcp_list=<%= node['ibm-openstack']['zvm-driver'][@host]['fcp_list'] %>
+
+# The list of FCPs used only by xCAT HCP node. It must be different to zvm_fcp_list.
+# Any FCP exist in both zvm_fcp_list and zvm_zhcp_fcp_list leads to errors. The format
+# of this variable should look like 'min1-max1;min2-max2;min3-max3'. Strongly
+# recommend to specify only one FCP for HCP to avoid resource waste. Please contact
+# your z/VM system manager if you don't know what FCPs you can use.
+zvm_zhcp_fcp_list=<%= node['ibm-openstack']['zvm-driver'][@host]['zhcp_fcp_list'] %>
+
+# For live migration. Choose one of 'ARCHITECTURE', 'DOMAIN' or 'STORAGE'.
+zvm_vmrelocate_force=<%= node['ibm-openstack']['zvm-driver']['vmrelocate_force'] %>

@@ -1,0 +1,41 @@
+<%= node["ibm-openstack"]["zvm-driver"]["custom_template_banner"] %>
+
+[AGENT]
+# (StrOpt) xCat REST API username, default value is admin.
+zvm_xcat_username = <%= node['ibm-openstack']['zvm-driver']['xcat']['username'] %>
+
+# (StrOpt) xCat MN server address, IP address or host name
+zvm_xcat_server = <%= node['ibm-openstack']['zvm-driver']['xcat']['server'] %>
+
+# (StrOpt) xCat ZHCP nodename in xCAT, default value is zhcp
+xcat_zhcp_nodename = <%= node['ibm-openstack']['zvm-driver']['xcat']['zhcp_nodename'] %>
+
+# (StrOpt) xCat management interface IP address
+xcat_mgt_ip = <%= node['ibm-openstack']['zvm-driver']['xcat']['mgt_ip'] %>
+
+# (StrOpt) xCat management interface netmask
+xcat_mgt_mask = <%= node['ibm-openstack']['zvm-driver']['xcat']['mgt_mask'] %>
+
+# (StrOpt) Password of the xCat REST API user, default value is admin
+zvm_xcat_password = <%= @zvm_xcat_password %>
+
+# (StrOpt) z/VM host name in xCAT
+zvm_host = <%= node['ibm-openstack']['zvm-driver'][@host]['zvm_host'] %>
+
+# (IntOpt) Agent’s polling interval in seconds, default value is 2 seconds
+polling_interval = <%= node['ibm-openstack']['zvm-driver']['polling_interval'] %>
+
+# (IntOpt) The number of seconds the agent will wait for
+# xCAT MN response, default value is 300 seconds
+zvm_xcat_timeout = <%= node['ibm-openstack']['zvm-driver']['xcat']['timeout'] %>
+
+# OSA configuration for each of the vswitches, these configurations are required if vswitch
+# needs to connect outside of z/VM
+<% if @zvm_external_vswitch_mappings %>
+<% @zvm_external_vswitch_mappings.each do |zvm_external_vswitch_mapping| %>
+<% evm = zvm_external_vswitch_mapping.split(':') %>
+[<%= evm[0] %>]
+# RDEV address of the OSA cards which are connected to the vswitch.
+rdev_list = <%= evm[1] %>
+<% end %>
+<% end %>
