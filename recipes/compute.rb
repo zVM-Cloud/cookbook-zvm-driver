@@ -1,6 +1,6 @@
 # encoding: UTF-8
 #
-# Cookbook Name:: ibm-openstack-zvm-driver
+# Cookbook Name:: openstack-zvm-driver
 # Recipe:: compute
 #
 # Copyright 2014, 2015 IBM Corp.
