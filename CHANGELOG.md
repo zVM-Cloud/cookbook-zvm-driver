@@ -1,7 +1,7 @@
-ibm-openstack-zvm-driver CHANGELOG
+openstack-zvm-driver CHANGELOG
 ==================================
 
-This file is used to list changes made in each version of the ibm-openstack-zvm-driver cookbook.
+This file is used to list changes made in each version of the cookbook.
 
 11.1.0
 -----
@@ -85,7 +85,7 @@ This file is used to list changes made in each version of the ibm-openstack-zvm-
 
 0.1.0
 -----
-- ShuoZhang - Initial release of ibm-openstack-zvm-driver
+- ShuoZhang - Initial release of openstack-zvm-driver
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

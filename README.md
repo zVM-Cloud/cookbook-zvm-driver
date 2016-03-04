@@ -1,4 +1,4 @@
-ibm-openstack-zvm-driver Cookbook
+openstack-zvm-driver Cookbook
 =================================
 This cookbook configures OpenStack z/VM driver(including compute z/VM driver and network z/VM agent) on controller node or seperate nodes on x86 Linux system, to enable z/VM cloud for OpenStack.  
 It supports multi computes/neutron zvm agents in one host.  
