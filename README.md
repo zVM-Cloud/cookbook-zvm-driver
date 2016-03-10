@@ -26,15 +26,13 @@ Usage
 -----
 
 Here is a diagram of z/VM driver in the "Single Controller + N Compute" mode:  
-|--------------|--------------------------------------------------------------|----------------------------------|  
+ 
 | Services     |Controller Node                                               |Cloud Node x                      |  
-|--------------|--------------------------------------------------------------|----------------------------------|  
+|--------------|:------------------------------------------------------------:|---------------------------------:|  
 | Compute      |nova-api, nova-cert, nova-conductor, nova-scheduler           |nova-compute(nova-zvm-virt-driver)|  
-|--------------|--------------------------------------------------------------|----------------------------------|  
 | Network      |neutron-server                                                |neutron-zvm-agent                 |  
-|--------------|--------------------------------------------------------------|----------------------------------|  
 | Block Storage|cinder-scheduler, cinder-api, cinder-volume                   |                                  |  
-|--------------|--------------------------------------------------------------|----------------------------------|  
+
 
 From Juno release, the z/VM driver cookbook supports multi computes/neutron zvm agents in one host. 
 The releated data_bag also need to be changed. All the xCAT's passwords are in one data bag item.
