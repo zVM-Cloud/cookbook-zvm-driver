@@ -28,7 +28,7 @@ Usage
 Here is a diagram of z/VM driver in the "Single Controller + N Compute" mode:  
  
 | Services     |Controller Node                                               |Cloud Node x                      |  
-|:------------:|:------------------------------------------------------------:|:--------------------------------:|  
+|:-------------|:-------------------------------------------------------------|:---------------------------------|  
 | Compute      |nova-api, nova-cert, nova-conductor, nova-scheduler           |nova-compute(nova-zvm-virt-driver)|  
 | Network      |neutron-server                                                |neutron-zvm-agent                 |  
 | Block Storage|cinder-scheduler, cinder-api, cinder-volume                   |                                  |  
